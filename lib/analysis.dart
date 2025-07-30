@@ -1,16 +1,26 @@
-import 'package:teler/teler.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'questions.dart';
 
-void analyzeResults(TelegramContext ctx, Map<String, dynamic> userData) {
-  final answers = userData['answers'];
-  final filtered = userData['filtered'];
-  final byTopic = {
-    'basics': 0,
-    'memory': 0,
-    'async': 0,
-    'widgets': 0,
-    'architecture': 0,
+final String token = Platform.environment['BOT_TOKEN'] ?? '';
+final String apiUrl = 'https://api.telegram.org/bot$token';
+
+Future<void> sendMessage(int chatId, String text, [Map<String, dynamic>? replyMarkup]) async {
+  final url = Uri.parse('$apiUrl/sendMessage');
+  final body = {
+    'chat_id': chatId,
+    'text': text,
+    'parse_mode': 'Markdown',
+    'reply_markup': json.encode(replyMarkup ?? {}),
   };
+  await http.post(url, body: body);
+}
 
+void analyzeResults(Map<String, dynamic> userData, int chatId) async {
+  final answers = userData['answers'] as List<int>;
+  final filtered = userData['filtered'] as List<Question>;
+
+  final byTopic = <String, int>{};
   int correct = 0;
 
   for (int i = 0; i < 10; i++) {
@@ -22,59 +32,40 @@ void analyzeResults(TelegramContext ctx, Map<String, dynamic> userData) {
     }
   }
 
-  final recommendations = generateRecommendations(byTopic, filtered);
-
   final analysis = '''
 🎯 *Тест завершён!*
 Ты ответил правильно на *$correct из 10*.
 
 🔍 *Анализ по темам:*
-• Основы: ${byTopic['basics']}/3 ${byTopic['basics'] == 3 ? '✅' : byTopic['basics']! >= 2 ? '⚠️' : '❌'}
-• Управление памятью: ${byTopic['memory']}/3 ${byTopic['memory'] == 3 ? '✅' : byTopic['memory']! >= 2 ? '⚠️' : '❌'}
-• Асинхронность: ${byTopic['async']}/3 ${byTopic['async'] == 3 ? '✅' : byTopic['async']! >= 2 ? '⚠️' : '❌'}
-• Виджеты: ${byTopic['widgets']}/3 ${byTopic['widgets'] == 3 ? '✅' : byTopic['widgets']! >= 2 ? '⚠️' : '❌'}
-• Архитектура: ${byTopic['architecture']}/1 ${byTopic['architecture'] == 1 ? '✅' : '❌'}
+• Основы: ${byTopic['basics'] ?? 0}/3 ${byTopic['basics'] == 3 ? '✅' : byTopic['basics']! >= 2 ? '⚠️' : '❌'}
+• Управление памятью: ${byTopic['memory'] ?? 0}/3 ${byTopic['memory'] == 3 ? '✅' : byTopic['memory']! >= 2 ? '⚠️' : '❌'}
+• Асинхронность: ${byTopic['async'] ?? 0}/3 ${byTopic['async'] == 3 ? '✅' : byTopic['async']! >= 2 ? '⚠️' : '❌'}
+• Виджеты: ${byTopic['widgets'] ?? 0}/3 ${byTopic['widgets'] == 3 ? '✅' : byTopic['widgets']! >= 2 ? '⚠️' : '❌'}
+• Архитектура: ${byTopic['architecture'] ?? 0}/1 ${byTopic['architecture'] == 1 ? '✅' : '❌'}
 
 📌 *Рекомендации:*
-${recommendations.isEmpty ? "🎉 Отличная работа! Готов к собеседованию!" : recommendations}
-''';
+  ''';
 
-  ctx.reply(analysis, parseMode: 'Markdown');
-}
+  String recommendations = '';
 
-String generateRecommendations(Map<String, int> byTopic, List<Question> filtered) {
-  final recommendations = StringBuffer();
-
-  if (byTopic['basics']! < 2) {
-    recommendations.writeln('- 🔹 Изучи основы:');
-    recommendations.writeln('  • https://docs.swift.org/swift-book/');
-    recommendations.writeln('  • https://dart.dev/guides/language/language-tour');
-    recommendations.writeln('  • https://docs.flutter.dev/get-started');
+  if ((byTopic['async'] ?? 0) < 2) {
+    recommendations += '🔸 Изучи асинхронность: Future, Isolate, async/await\n';
+    recommendations += '• https://dart.dev/codelabs/async-await\n';
   }
 
-  if (byTopic['memory']! < 2) {
-    recommendations.writeln('- 🔹 Управление памятью:');
-    recommendations.writeln('  • https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/');
-    recommendations.writeln('  • https://dart.dev/guides/language/effective-dart/design#memory-management');
+  if ((byTopic['architecture'] ?? 0) < 1) {
+    recommendations += '\n🔸 Архитектура:\n';
+    recommendations += '• BLoC: https://pub.dev/packages/flutter_bloc\n';
+    recommendations += '• Clean Architecture: https://github.com/brianegan/flutter_architecture_samples\n';
   }
 
-  if (byTopic['async']! < 2) {
-    recommendations.writeln('- 🔹 Асинхронность:');
-    recommendations.writeln('  • https://dart.dev/codelabs/async-await');
-    recommendations.writeln('  • https://docs.flutter.dev/cookbook/networking/fetch-data');
+  if (recommendations.isEmpty) {
+    recommendations = "🎉 Отличная работа! Готов к собеседованию!";
   }
 
-  if (byTopic['widgets']! < 2) {
-    recommendations.writeln('- 🔹 Виджеты в Flutter:');
-    recommendations.writeln('  • https://docs.flutter.dev/ui/widgets');
-    recommendations.writeln('  • https://docs.flutter.dev/perf');
+  if (correct < 3) {
+    recommendations += "\n\n💡 А теперь анекдот:\n_Почему программист не пошёл на свидание?_\n`Because null == true`";
   }
 
-  if (byTopic['architecture']! < 1) {
-    recommendations.writeln('- 🔹 Архитектура:');
-    recommendations.writeln('  • BLoC: https://pub.dev/packages/flutter_bloc');
-    recommendations.writeln('  • Clean Architecture: https://github.com/brianegan/flutter_architecture_samples');
-  }
-
-  return recommendations.toString();
+  await sendMessage(chatId, analysis + recommendations);
 }

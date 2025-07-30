@@ -1,6 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
+List<Question> loadQuestions() {
+  final file = File('data/questions.json');
+  final content = file.readAsStringSync();
+  final List<dynamic> jsonList = json.decode(content);
+
+  return jsonList.map((json) => Question.fromJson(json)).toList();
+}
+
 class Question {
   final String tech;
   final String difficulty;
@@ -22,20 +30,13 @@ class Question {
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-      tech: json['technology'],
-      difficulty: json['difficulty'],
-      topic: json['topic'],
-      text: json['question'],
-      options: List<String>.from(json['options']),
-      correctIndex: json['correct'],
-      recommendation: json['recommendation'] ?? '',
+      tech: json['technology'] as String,
+      difficulty: json['difficulty'] as String,
+      topic: json['topic'] as String,
+      text: json['question'] as String,
+      options: (json['options'] as List).map((e) => e.toString()).toList(),
+      correctIndex: json['correct'] as int,
+      recommendation: json['recommendation'] as String,
     );
   }
-}
-
-List<Question> loadQuestions() {
-  final file = File('data/questions.json');
-  final content = file.readAsStringSync();
-  final jsonList = json.decode(content) as List;
-  return jsonList.map((q) => Question.fromJson(q)).toList();
 }
