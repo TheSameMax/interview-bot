@@ -1,0 +1,342 @@
+[
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Как объявить константу в Swift?",
+    "options": ["var", "let", "const", "final"],
+    "correct": 1,
+    "recommendation": "Основы Swift: https://docs.swift.org/swift-book/"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Что означает `?` после типа (например, `String?`)?",
+    "options": ["Обязательное значение", "Опциональное значение", "Указатель", "Ссылка"],
+    "correct": 1,
+    "recommendation": "Опционалы в Swift: https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID330"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Какой тип данных используется для логических значений?",
+    "options": ["Bool", "Boolean", "Logic", "Int"],
+    "correct": 0,
+    "recommendation": "Типы данных в Swift: https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "memory",
+    "question": "Что такое `guard let`?",
+    "options": [
+      "Условие для выхода из функции, если опционал `nil`",
+      "Аналог `if let`, но без принудительного распаковывания",
+      "Цикл по опционалу",
+      "Синхронизация потоков"
+    ],
+    "correct": 0,
+    "recommendation": "guard и if let: https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "types",
+    "question": "Чем отличается `struct` от `class`?",
+    "options": [
+      "struct — ссылочный тип, class — значимый",
+      "struct — значимый тип, class — ссылочный",
+      "Только class может иметь методы",
+      "struct нельзя наследовать"
+    ],
+    "correct": 1,
+    "recommendation": "Структуры и классы: https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "memory",
+    "question": "Что такое `deinit`?",
+    "options": ["Метод для инициализации объекта", "Деструктор, вызывается при освобождении памяти", "Геттер для свойства", "Асинхронная функция"],
+    "correct": 1,
+    "recommendation": "Управление памятью: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "closures",
+    "question": "Что такое `@escaping` closure?",
+    "options": [
+      "Замыкание, которое выполняется немедленно",
+      "Замыкание, которое хранится и вызывается позже",
+      "Замыкание, которое нельзя передавать",
+      "Замыкание с сильной ссылкой"
+    ],
+    "correct": 1,
+    "recommendation": "Замыкания: https://docs.swift.org/swift-book/LanguageGuide/Closures.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "memory",
+    "question": "Как предотвратить retain cycle в замыканиях?",
+    "options": ["Использовать `weak self` или `unowned self`", "Удалить `self`", "Использовать `strong self`", "Заменить на `struct`"],
+    "correct": 0,
+    "recommendation": "Retain cycles: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/#Resolving-Strong-Reference-Cycles-for-Closures"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "control_flow",
+    "question": "Что делает `defer`?",
+    "options": [
+      "Откладывает выполнение кода до конца области видимости",
+      "Прерывает выполнение функции",
+      "Выполняет код асинхронно",
+      "Создаёт задержку"
+    ],
+    "correct": 0,
+    "recommendation": "defer: https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html#ID542"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой паттерн архитектуры используется по умолчанию в iOS приложениях Apple?",
+    "options": ["MVC", "MVVM", "MVP", "VIPER"],
+    "correct": 0,
+    "recommendation": "MVC в iOS: https://www.hackingwithswift.com/example-code/language/what-is-mvc"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Как объявить переменную в Dart?",
+    "options": ["var, final, const", "let, var", "int, string", "def"],
+    "correct": 0,
+    "recommendation": "Переменные в Dart: https://dart.dev/guides/language/language-tour#variables"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Что делает `final`?",
+    "options": [
+      "Значение можно установить один раз при инициализации",
+      "Значение можно менять",
+      "Только для примитивов",
+      "Значение вычисляется в compile-time"
+    ],
+    "correct": 0,
+    "recommendation": "final и const: https://dart.dev/guides/language/language-tour#final-and-const"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Какой тип данных для целых чисел?",
+    "options": ["int", "Integer", "number", "double"],
+    "correct": 0,
+    "recommendation": "Типы данных: https://dart.dev/guides/language/language-tour#numbers"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "async",
+    "question": "Чем отличается `final` от `const`?",
+    "options": [
+      "const — compile-time константа, final — runtime",
+      "final нельзя использовать в классах",
+      "const можно менять",
+      "final работает только с примитивами"
+    ],
+    "correct": 0,
+    "recommendation": "final vs const: https://dart.dev/guides/language/language-tour#final-and-const"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "async",
+    "question": "Что такое `Future`?",
+    "options": [
+      "Объект, представляющий значение, которое появится позже",
+      "Синхронная функция",
+      "Коллекция данных",
+      "Тип для строк"
+    ],
+    "correct": 0,
+    "recommendation": "Future: https://dart.dev/codelabs/async-await"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "async",
+    "question": "Как работает `async/await`?",
+    "options": [
+      "Позволяет писать асинхронный код синхронно",
+      "Замедляет выполнение",
+      "Удаляет необходимость в `Future`",
+      "Работает только с `Stream`"
+    ],
+    "correct": 0,
+    "recommendation": "async/await: https://dart.dev/codelabs/async-await"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "isolate",
+    "question": "Что такое `Isolate` в Dart?",
+    "options": [
+      "Поток выполнения с собственной памятью, без общего доступа",
+      "Аналог `Thread` в Java",
+      "Способ синхронизации данных",
+      "Встроенный пул потоков"
+    ],
+    "correct": 0,
+    "recommendation": "Isolates: https://dart.dev/guides/language/language-tour#isolates"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "isolate",
+    "question": "Как передавать данные между Isolates?",
+    "options": ["Через `SendPort` и `ReceivePort`", "Через глобальные переменные", "Через `shared memory`", "Нельзя передавать"],
+    "correct": 0,
+    "recommendation": "Передача данных: https://api.dart.dev/stable/3.1.0/dart-isolate/SendPort-class.html"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "syntax",
+    "question": "Что делает `cascade notation` (`..`)?",
+    "options": [
+      "Выполняет несколько операций над одним объектом без повторения имени",
+      "Создаёт цепочку асинхронных вызовов",
+      "Объединяет списки",
+      "Вызывает геттеры"
+    ],
+    "correct": 0,
+    "recommendation": "Cascade notation: https://dart.dev/guides/language/language-tour#cascade-notation-"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой архитектурный подход чаще всего используется в Dart-приложениях (например, с Flutter)?",
+    "options": ["BLoC", "MVC", "MVP", "Clean Architecture"],
+    "correct": 0,
+    "recommendation": "BLoC Pattern: https://pub.dev/packages/flutter_bloc"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Какой класс используется для создания виджета, который может менять состояние?",
+    "options": ["StatelessWidget", "StatefulWidget", "InheritedWidget", "Container"],
+    "correct": 1,
+    "recommendation": "StatefulWidget: https://docs.flutter.dev/ui/interactive"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Что такое `BuildContext`?",
+    "options": ["Контекст выполнения функции", "Ссылка на место виджета в дереве", "Объект для доступа к памяти", "Класс для навигации"],
+    "correct": 1,
+    "recommendation": "BuildContext: https://api.flutter.dev/flutter/widgets/BuildContext-class.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Как добавить текст в интерфейс?",
+    "options": ["Text()", "Label()", "TextView()", "StringWidget()"],
+    "correct": 0,
+    "recommendation": "Text Widget: https://docs.flutter.dev/ui/widgets/text"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "state",
+    "question": "Чем отличается `StatefulWidget` от `StatelessWidget`?",
+    "options": [
+      "StatefulWidget может менять своё состояние",
+      "StatefulWidget тяжелее рисуется",
+      "StatelessWidget нельзя использовать с `setState`",
+      "Все вышеуказанные"
+    ],
+    "correct": 3,
+    "recommendation": "StatefulWidget vs StatelessWidget: https://docs.flutter.dev/ui/interactive"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "widgets",
+    "question": "Для чего используется `Key` в виджетах?",
+    "options": [
+      "Для уникальной идентификации виджета при перестроении дерева",
+      "Для стилизации",
+      "Для доступа к данным",
+      "Для навигации"
+    ],
+    "correct": 0,
+    "recommendation": "Keys in Flutter: https://docs.flutter.dev/ui/widgets-intro#keys"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "navigation",
+    "question": "Что делает `Navigator.push()`?",
+    "options": ["Добавляет новый экран на стек навигации", "Заменяет текущий экран", "Закрывает приложение", "Переходит на предыдущий экран"],
+    "correct": 0,
+    "recommendation": "Navigation: https://docs.flutter.dev/ui/navigation"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "performance",
+    "question": "Как работает `InheritedWidget`?",
+    "options": [
+      "Позволяет передавать данные вниз по дереву и уведомлять потомков об изменениях",
+      "Используется для анимаций",
+      "Заменяет `Provider`",
+      "Хранит глобальные переменные"
+    ],
+    "correct": 0,
+    "recommendation": "InheritedWidget: https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "state",
+    "question": "Что происходит при вызове `setState()`?",
+    "options": [
+      "Перерисовывается весь виджет и его потомки",
+      "Перерисовывается только текущий `StatefulWidget`",
+      "Перерисовывается только изменённая часть",
+      "Ничего, если нет изменений"
+    ],
+    "correct": 1,
+    "recommendation": "setState: https://api.flutter.dev/flutter/widgets/State/setState.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "performance",
+    "question": "Как оптимизировать производительность списка с 1000 элементов?",
+    "options": ["Использовать `ListView.builder`", "Загружать все элементы сразу", "Использовать `Column` с `Text`", "Уменьшить шрифт"],
+    "correct": 0,
+    "recommendation": "Производительность списков: https://docs.flutter.dev/ui/performance/best-practices#lazily-create-widgets"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой паттерн архитектуры рекомендуется для масштабируемого Flutter-приложения?",
+    "options": ["Clean Architecture с BLoC/Provider", "Только StatelessWidget", "MVC", "Singleton everywhere"],
+    "correct": 0,
+    "recommendation": "Clean Architecture: https://github.com/brianegan/flutter_architecture_samples"
+  }
+]

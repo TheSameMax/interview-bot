@@ -1,0 +1,12 @@
+name: interview_bot
+description: Telegram bot for Swift, Dart, Flutter interview prep
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  teler: ^0.3.0
+
+dev_dependencies:
+  lints: ^2.0.0
