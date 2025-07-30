@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:teler/teler.dart';
-import 'questions.dart';
-import 'analysis.dart';
+import 'package:telegraf/telegraf.dart';
+import 'package:interview_bot/questions.dart';
 
-final bot = Teler(token: Platform.environment['BOT_TOKEN'] ?? '');
+final bot = Bot(Platform.environment['BOT_TOKEN'] ?? '');
 
 // Хранилище пользователей
 Map<int, Map<String, dynamic>> userState = {};
@@ -31,15 +30,14 @@ Future<void> sendWelcome(TelegramContext ctx) async {
     '🔹 Получи анализ своих знаний\n'
     '🔹 И честные рекомендации, куда смотреть, если что-то пошло не так\n\n'
     'Готов? Выбери технологию:',
-    replyMarkup: {
-      'keyboard': [
-        [{'text': 'Swift'}, {'text': 'Dart'}, {'text': 'Flutter'}],
-        [{'text': '❓ Помощь'}]
+    replyMarkup: ReplyKeyboardMarkup(
+      keyboard: [
+        [KeyboardButton(text: 'Swift'), KeyboardButton(text: 'Dart'), KeyboardButton(text: 'Flutter')],
+        [KeyboardButton(text: '❓ Помощь')]
       ],
-      'resize_keyboard': true,
-      'one_time_keyboard': false,
-    },
-    parseMode: 'Markdown',
+      resizeKeyboard: true,
+    ),
+    parseMode: ParseMode.markdown,
   );
 }
 
@@ -47,7 +45,7 @@ Future<void> sendWelcome(TelegramContext ctx) async {
 void setupBot() {
   setCommands();
 
-  bot.command('start', (ctx) async {
+  bot.onCommand('start', (ctx) async {
     final userId = ctx.from.id;
     userState[userId] = {
       'answers': <int>[],
@@ -58,7 +56,7 @@ void setupBot() {
     await sendWelcome(ctx);
   });
 
-  bot.command('help', (ctx) async {
+  bot.onCommand('help', (ctx) async {
     await ctx.reply(
       '📌 *Как это работает?*\n\n'
       '1. Выбери технологию: Swift, Dart или Flutter\n'
@@ -68,11 +66,11 @@ void setupBot() {
       '   • Анализ слабых мест\n'
       '   • Ссылки для изучения\n\n'
       '💡 Совет: не бойся ошибаться — я не @BotFather, чтобы тебя банить.',
-      parseMode: 'Markdown',
+      parseMode: ParseMode.markdown,
     );
   });
 
-  bot.command('restart', (ctx) async {
+  bot.onCommand('restart', (ctx) async {
     final userId = ctx.from.id;
     userState[userId] = {
       'answers': <int>[],
@@ -80,33 +78,34 @@ void setupBot() {
       'tech': null,
       'filtered': [],
     };
-    await ctx.reply('🔄 Тест перезапущен. Выбери технологию:', replyMarkup: {
-      'keyboard': [
-        [{'text': 'Swift'}, {'text': 'Dart'}, {'text': 'Flutter'}],
-        [{'text': '❓ Помощь'}]
+    await ctx.reply('🔄 Тест перезапущен. Выбери технологию:', replyMarkup: ReplyKeyboardMarkup(
+      keyboard: [
+        [KeyboardButton(text: 'Swift'), KeyboardButton(text: 'Dart'), KeyboardButton(text: 'Flutter')],
+        [KeyboardButton(text: '❓ Помощь')]
       ],
-      'resize_keyboard': true,
-    });
+      resizeKeyboard: true,
+    ));
   });
 
-  bot.hears(['Swift', 'Dart', 'Flutter'], (ctx) async {
-    final userId = ctx.from.id;
-    final tech = ctx.message.text!.toLowerCase();
-    final filtered = questions.where((q) => q.tech == tech).toList();
-    userState[userId]!['tech'] = tech;
-    userState[userId]!['filtered'] = filtered;
-    await askQuestion(ctx);
-  });
-
-  bot.hears('❓ Помощь', (ctx) async {
-    await bot.handlers['help']!(ctx);
-  });
-
-  bot.on('message', (ctx) async {
+  bot.onMessage((ctx) async {
     final text = ctx.message.text;
     final userId = ctx.from.id;
     final userData = userState[userId];
-    if (userData == null || userData['tech'] == null) return;
+    if (userData == null) return;
+
+    if (text == 'Swift' || text == 'Dart' || text == 'Flutter') {
+      final tech = text.toLowerCase();
+      final filtered = questions.where((q) => q.tech == tech).toList();
+      userData['tech'] = tech;
+      userData['filtered'] = filtered;
+      await askQuestion(ctx);
+      return;
+    }
+
+    if (text == '❓ Помощь') {
+      await bot.handlers['help']!(ctx);
+      return;
+    }
 
     final index = userData['index'];
     if (index >= 10) return;
@@ -144,12 +143,12 @@ Future<void> askQuestion(TelegramContext ctx) async {
 
   await ctx.reply(
     '*Вопрос ${index + 1}:*\n\n${question.text}',
-    replyMarkup: {
-      'keyboard': question.options.map((opt) => [{'text': opt}]).toList(),
-      'resize_keyboard': true,
-      'one_time_keyboard': true,
-    },
-    parseMode: 'Markdown',
+    replyMarkup: ReplyKeyboardMarkup(
+      keyboard: question.options.map((opt) => [KeyboardButton(text: opt)]).toList(),
+      resizeKeyboard: true,
+      oneTimeKeyboard: true,
+    ),
+    parseMode: ParseMode.markdown,
   );
 }
 
@@ -160,5 +159,59 @@ Future<void> showResult(TelegramContext ctx) async {
   final filtered = userData['filtered'];
   final answers = userData['answers'];
 
-  analyzeResults(ctx, userData);
+  final byTopic = {
+    'basics': 0,
+    'memory': 0,
+    'async': 0,
+    'widgets': 0,
+    'architecture': 0,
+  };
+
+  int correct = 0;
+
+  for (int i = 0; i < 10; i++) {
+    final q = filtered[i];
+    final isCorrect = answers[i] == q.correctIndex;
+    if (isCorrect) {
+      correct++;
+      byTopic[q.topic] = (byTopic[q.topic] ?? 0) + 1;
+    }
+  }
+
+  final analysis = '''
+🎯 *Тест завершён!*
+Ты ответил правильно на *$correct из 10*.
+
+🔍 *Анализ по темам:*
+• Основы: ${byTopic['basics']}/3 ${byTopic['basics'] == 3 ? '✅' : byTopic['basics']! >= 2 ? '⚠️' : '❌'}
+• Управление памятью: ${byTopic['memory']}/3 ${byTopic['memory'] == 3 ? '✅' : byTopic['memory']! >= 2 ? '⚠️' : '❌'}
+• Асинхронность: ${byTopic['async']}/3 ${byTopic['async'] == 3 ? '✅' : byTopic['async']! >= 2 ? '⚠️' : '❌'}
+• Виджеты: ${byTopic['widgets']}/3 ${byTopic['widgets'] == 3 ? '✅' : byTopic['widgets']! >= 2 ? '⚠️' : '❌'}
+• Архитектура: ${byTopic['architecture']}/1 ${byTopic['architecture'] == 1 ? '✅' : '❌'}
+
+📌 *Рекомендации:*
+  ''';
+
+  String recommendations = '';
+
+  if (byTopic['async']! < 2) {
+    recommendations += '🔸 Изучи асинхронность: Future, Isolate, async/await\n';
+    recommendations += '• https://dart.dev/codelabs/async-await\n';
+  }
+
+  if (byTopic['architecture']! < 1) {
+    recommendations += '\n🔸 Архитектура:\n';
+    recommendations += '• BLoC: https://pub.dev/packages/flutter_bloc\n';
+    recommendations += '• Clean Architecture: https://github.com/brianegan/flutter_architecture_samples\n';
+  }
+
+  if (recommendations.isEmpty) {
+    recommendations = "🎉 Отличная работа! Готов к собеседованию!";
+  }
+
+  if (correct < 3) {
+    recommendations += "\n\n💡 А теперь анекдот:\n_Почему программист не пошёл на свидание?_\n`Because null == true`";
+  }
+
+  await ctx.reply(analysis + recommendations, parseMode: ParseMode.markdown);
 }

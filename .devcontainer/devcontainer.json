@@ -1,17 +1,9 @@
 {
-  "name": "Dart & Flutter Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/flutter:1": {
-      "version": "latest"
-    }
-  },
+  "image": "google/dart:latest",
+  "name": "Dart Only",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "dart-code.dart-code",
-        "dart-code.flutter"
-      ]
+      "extensions": ["dart-code.dart-code"]
     }
   },
   "postCreateCommand": "dart --version"
