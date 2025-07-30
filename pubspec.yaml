@@ -5,7 +5,9 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  teler: ^0.3.0
+  teler:
+    git:
+      url: https://github.com/rodydavis/teler.git
 
 dev_dependencies:
   lints: ^2.0.0
