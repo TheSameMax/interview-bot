@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:interview_bot/bot.dart';
+import 'package:interview_bot/questions.dart';
 
 void main() async {
   // 🔐 Проверяем, задан ли BOT_TOKEN
