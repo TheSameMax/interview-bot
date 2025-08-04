@@ -1,0 +1,327 @@
+[
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Какой класс используется для создания виджета, который может менять состояние?",
+    "options": ["StatelessWidget", "StatefulWidget", "InheritedWidget", "Container"],
+    "correct": 1,
+    "recommendation": "StatefulWidget: https://docs.flutter.dev/ui/interactive"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Что такое `BuildContext`?",
+    "options": ["Контекст выполнения функции", "Ссылка на место виджета в дереве", "Объект для доступа к памяти", "Класс для навигации"],
+    "correct": 1,
+    "recommendation": "BuildContext: https://api.flutter.dev/flutter/widgets/BuildContext-class.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "easy",
+    "topic": "widgets",
+    "question": "Какой виджет используется для вертикального расположения элементов?",
+    "options": ["Row", "Column", "Stack", "Flex"],
+    "correct": 1,
+    "recommendation": "Column: https://api.flutter.dev/flutter/widgets/Column-class.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "state",
+    "question": "Чем отличается `StatefulWidget` от `StatelessWidget`?",
+    "options": [
+      "StatefulWidget может менять своё состояние",
+      "StatefulWidget тяжелее рисуется",
+      "StatelessWidget нельзя использовать с `setState`",
+      "Все вышеуказанные"
+    ],
+    "correct": 3,
+    "recommendation": "StatefulWidget vs StatelessWidget: https://docs.flutter.dev/ui/interactive"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "navigation",
+    "question": "Что делает `Navigator.push()`?",
+    "options": ["Добавляет новый экран на стек навигации", "Заменяет текущий экран", "Закрывает приложение", "Переходит на предыдущий экран"],
+    "correct": 0,
+    "recommendation": "Navigation: https://docs.flutter.dev/ui/navigation"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "medium",
+    "topic": "performance",
+    "question": "Для чего используется `Key` в виджетах?",
+    "options": [
+      "Для уникальной идентификации виджета при перестроении дерева",
+      "Для стилизации",
+      "Для доступа к данным",
+      "Для навигации"
+    ],
+    "correct": 0,
+    "recommendation": "Keys in Flutter: https://docs.flutter.dev/ui/widgets-intro#keys"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "performance",
+    "question": "Как оптимизировать производительность списка с 1000 элементов?",
+    "options": ["Использовать `ListView.builder`", "Загружать все элементы сразу", "Использовать `Column` с `Text`", "Уменьшить шрифт"],
+    "correct": 0,
+    "recommendation": "Производительность списков: https://docs.flutter.dev/ui/performance/best-practices#lazily-create-widgets"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "state",
+    "question": "Что происходит при вызове `setState()`?",
+    "options": [
+      "Перерисовывается весь виджет и его потомки",
+      "Перерисовывается только текущий `StatefulWidget`",
+      "Перерисовывается только изменённая часть",
+      "Ничего, если нет изменений"
+    ],
+    "correct": 1,
+    "recommendation": "setState: https://api.flutter.dev/flutter/widgets/State/setState.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "hard",
+    "topic": "performance",
+    "question": "Как работает `InheritedWidget`?",
+    "options": [
+      "Позволяет передавать данные вниз по дереву и уведомлять потомков об изменениях",
+      "Используется для анимаций",
+      "Заменяет `Provider`",
+      "Хранит глобальные переменные"
+    ],
+    "correct": 0,
+    "recommendation": "InheritedWidget: https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html"
+  },
+  {
+    "technology": "flutter",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой паттерн архитектуры рекомендуется для масштабируемого Flutter-приложения?",
+    "options": ["Clean Architecture с BLoC/Provider", "Только StatelessWidget", "MVC", "Singleton everywhere"],
+    "correct": 0,
+    "recommendation": "Clean Architecture: https://github.com/brianegan/flutter_architecture_samples"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Как объявить переменную в Dart?",
+    "options": ["var", "let", "const", "auto"],
+    "correct": 0,
+    "recommendation": "Dart basics: https://dart.dev/language/built-in-types"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Какой тип данных используется для целых чисел в Dart?",
+    "options": ["int", "double", "num", "integer"],
+    "correct": 0,
+    "recommendation": "Dart numbers: https://dart.dev/language/numbers"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Какой ключевое слово делает переменную неизменяемой?",
+    "options": ["final", "const", "static", "immutable"],
+    "correct": 1,
+    "recommendation": "final vs const: https://dart.dev/language/built-in-types#final-and-const"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "async",
+    "question": "Какой ключевое слово используется для ожидания результата `Future`?",
+    "options": ["await", "async", "then", "future"],
+    "correct": 0,
+    "recommendation": "Async/Await: https://dart.dev/codelabs/async-await"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "async",
+    "question": "Что делает `Future.delayed()`?",
+    "options": [
+      "Создаёт асинхронную задержку",
+      "Выполняет код синхронно",
+      "Отменяет Future",
+      "Запускает изолят"
+    ],
+    "correct": 0,
+    "recommendation": "Future.delayed: https://api.dart.dev/stable/dart-async/Future/Future.delayed.html"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "medium",
+    "topic": "collections",
+    "question": "Как создать неизменяемый список в Dart?",
+    "options": ["List.unmodifiable([...])", "const [...]", "List.frozen([...])", "ImmutableList([...])"],
+    "correct": 0,
+    "recommendation": "Unmodifiable List: https://api.dart.dev/stable/dart-core/List/List.unmodifiable.html"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "memory",
+    "question": "Что такое `Isolate` в Dart?",
+    "options": [
+      "Независимый поток выполнения без общей памяти",
+      "Аналог потока с общей памятью",
+      "Способ оптимизации памяти",
+      "Класс для работы с файлами"
+    ],
+    "correct": 0,
+    "recommendation": "Isolates: https://dart.dev/language/concurrency"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "async",
+    "question": "Чем отличается `async` от `async*`?",
+    "options": [
+      "`async` возвращает Future, `async*` возвращает Stream",
+      "`async*` используется для изолятов",
+      "`async` — синхронный, `async*` — асинхронный",
+      "Нет разницы"
+    ],
+    "correct": 0,
+    "recommendation": "Streams: https://dart.dev/language/streams"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "hard",
+    "topic": "generics",
+    "question": "Как объявить обобщённый метод в Dart?",
+    "options": [
+      "T myMethod<T>(T value) { ... }",
+      "myMethod<T>(T value) { ... }",
+      "Generic<T> myMethod(T value) { ... }",
+      "void myMethod(T value) { ... }"
+    ],
+    "correct": 0,
+    "recommendation": "Generics: https://dart.dev/language/generics"
+  },
+  {
+    "technology": "dart",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой подход используется для управления состоянием в крупных Dart-приложениях?",
+    "options": ["BLoC, Provider, Riverpod", "Только глобальные переменные", "Singleton", "Event Bus"],
+    "correct": 0,
+    "recommendation": "State Management: https://docs.flutter.dev/data-and-backend/state-mgmt/options"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Как объявить константу в Swift?",
+    "options": ["let", "const", "val", "define"],
+    "correct": 0,
+    "recommendation": "Swift let: https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Какой тип данных используется для строк в Swift?",
+    "options": ["String", "string", "NSString", "char[]"],
+    "correct": 0,
+    "recommendation": "Swift String: https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "easy",
+    "topic": "basics",
+    "question": "Как объявить переменную в Swift?",
+    "options": ["var", "let", "mut", "const"],
+    "correct": 0,
+    "recommendation": "Swift var: https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "memory",
+    "question": "Что такое ARC в Swift?",
+    "options": [
+      "Automatic Reference Counting",
+      "Advanced Resource Control",
+      "Asynchronous Reference Counter",
+      "Auto Release Collection"
+    ],
+    "correct": 0,
+    "recommendation": "ARC: https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "optionals",
+    "question": "Как безопасно развернуть опционал в Swift?",
+    "options": ["if let", "force unwrap", "try?", "as?"],
+    "correct": 0,
+    "recommendation": "Optionals: https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID330"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "medium",
+    "topic": "closures",
+    "question": "Какой синтаксис замыкания в Swift?",
+    "options": ["{ }", "() =>", "function() {}", "closure()"],
+    "correct": 0,
+    "recommendation": "Closures: https://docs.swift.org/swift-book/LanguageGuide/Closures.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "memory",
+    "question": "Что такое `weak` ссылка в Swift?",
+    "options": [
+      "Ссылка, которая не увеличивает счётчик ссылок",
+      "Ссылка, которая всегда нулевая",
+      "Ссылка, доступная только изнутри класса",
+      "Ссылка на статический объект"
+    ],
+    "correct": 0,
+    "recommendation": "Weak References: https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html#ID52"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "generics",
+    "question": "Как объявить обобщённую функцию в Swift?",
+    "options": [
+      "func myFunc<T>(value: T) -> T",
+      "T myFunc(T value)",
+      "func<T> myFunc(value: T)",
+      "Generic<T> myFunc(value: T)"
+    ],
+    "correct": 0,
+    "recommendation": "Generics: https://docs.swift.org/swift-book/LanguageGuide/Generics.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "hard",
+    "topic": "concurrency",
+    "question": "Какой ключевое слово используется для асинхронного кода в Swift?",
+    "options": ["async", "await", "Task", "Все вышеуказанные"],
+    "correct": 3,
+    "recommendation": "Concurrency: https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html"
+  },
+  {
+    "technology": "swift",
+    "difficulty": "arch",
+    "topic": "architecture",
+    "question": "Какой паттерн архитектуры используется по умолчанию в SwiftUI?",
+    "options": ["Declarative UI", "MVC", "MVVM", "VIPER"],
+    "correct": 0,
+    "recommendation": "SwiftUI: https://developer.apple.com/xcode/swiftui/"
+  }
+]
